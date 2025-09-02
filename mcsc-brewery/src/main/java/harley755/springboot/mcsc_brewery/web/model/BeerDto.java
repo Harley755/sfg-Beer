@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Lombok annotation to generate a no-argument constructor
 @AllArgsConstructor // Lombok annotation to generate a constructor with all arguments
 @Builder // Lombok annotation to implement the builder pattern
-
 public class BeerDto {
     private UUID id;
     private String beername;
