@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import harley755.springboot.mcsc_brewery.services.BearService;
+import harley755.springboot.mcsc_brewery.services.BeerService;
 import harley755.springboot.mcsc_brewery.web.model.BeerDto;
 
 @RequestMapping("/api/v1/beer")
 @RestController
 public class BeerController {
 
-    private final BearService bearService;
+    private final BeerService bearService;
 
-    public BeerController(BearService bearService) {
+    public BeerController(BeerService bearService) {
         this.bearService = bearService;
     }
 
