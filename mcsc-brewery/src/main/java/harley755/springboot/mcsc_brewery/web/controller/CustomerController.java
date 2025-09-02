@@ -1,16 +1,25 @@
 package harley755.springboot.mcsc_brewery.web.controller;
 
+import java.net.URI;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import harley755.springboot.mcsc_brewery.services.CustomerService;
 import harley755.springboot.mcsc_brewery.web.model.CustomerDto;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
+
 
 
 @RequestMapping("/api/v1/customer")
@@ -29,6 +38,28 @@ public class CustomerController {
         return new ResponseEntity<>(
                 customerService.getCustomerById(id),
                 HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> createCustomer(@RequestBody CustomerDto customerDto) {
+
+        CustomerDto saved = customerService.createCustomer(customerDto);
+
+        return ResponseEntity
+                .created(URI.create("/api/v1/customer/" + saved.getId().toString()))
+                .build();
+    }
+    
+    @PutMapping("/{customerId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateCustomer(@PathVariable("customerId") UUID id, @RequestBody CustomerDto customerDto) {
+        customerService.updateCustomer(id, customerDto);
+    }
+    
+
+    @DeleteMapping("/{customerId}")
+    public void destroyCustomer(@PathVariable("customerId") UUID id) {
+        customerService.deleteCustomerById(id);
     }
     
     
