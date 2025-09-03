@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-MsscBeerServiceApplication<mssc-beer-service>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "harley755.spring_boot.mssc_beer_service.MsscBeerServiceApplication",
+      "projectName": "mssc-beer-service",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-McscBreweryApplication<mcsc-brewery>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "harley755.springboot.mcsc_brewery.McscBreweryApplication",
+      "projectName": "mcsc-brewery",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
