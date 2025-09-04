@@ -42,8 +42,8 @@ public class BeerController {
     @PostMapping()
     public ResponseEntity<Void> create(@RequestBody BeerDto beerDto) {
 
-        // IMPL
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        URI location = URI.create("/api/v1/beer/" + UUID.randomUUID());
+        return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{beerId}")
