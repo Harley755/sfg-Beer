@@ -1,6 +1,7 @@
 package harley755.spring_boot.mssc_beer_service.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import harley755.spring_boot.mssc_beer_service.model.BeerDto;
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +50,14 @@ public class BeerController {
 
     @PutMapping("/{beerId}")
     public ResponseEntity<Void> update(@PathVariable("beerId") UUID id, @RequestBody BeerDto beerDto) {
-        
+
+        // IMPL
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    @DeleteMapping("/{beerId}") 
+    public ResponseEntity<Void> delete(@PathVariable("beerId") UUID id) {
+
         // IMPL
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
