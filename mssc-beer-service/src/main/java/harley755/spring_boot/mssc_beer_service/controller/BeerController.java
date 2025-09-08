@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,14 +43,14 @@ public class BeerController {
 
 
     @PostMapping()
-    public ResponseEntity<Void> create(@RequestBody BeerDto beerDto) {
+    public ResponseEntity<Void> create(@RequestBody @Validated BeerDto beerDto) {
 
         URI location = URI.create("/api/v1/beer/" + UUID.randomUUID());
         return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{beerId}")
-    public ResponseEntity<Void> update(@PathVariable("beerId") UUID id, @RequestBody BeerDto beerDto) {
+    public ResponseEntity<Void> update(@PathVariable("beerId") UUID id, @RequestBody @Validated BeerDto beerDto) {
 
         // IMPL
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
