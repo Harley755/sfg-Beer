@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import harley755.springboot.mcsc_brewery.services.CustomerService;
 import harley755.springboot.mcsc_brewery.web.model.CustomerDto;
+import io.micrometer.common.lang.NonNull;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 
+@Validated
 @RequestMapping("/api/v1/customer")
 @RestController
 public class CustomerController {
@@ -34,14 +38,14 @@ public class CustomerController {
     
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<CustomerDto> getCustomer(@PathVariable("customerId") UUID id) {
+    public ResponseEntity<CustomerDto> getCustomer(@Valid @NonNull @PathVariable("customerId") UUID id) {
         return new ResponseEntity<>(
                 customerService.getCustomerById(id),
                 HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Void> createCustomer(@RequestBody CustomerDto customerDto) {
+    public ResponseEntity<Void> createCustomer(@Valid @RequestBody CustomerDto customerDto) {
 
         CustomerDto saved = customerService.createCustomer(customerDto);
 
@@ -52,7 +56,7 @@ public class CustomerController {
     
     @PutMapping("/{customerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateCustomer(@PathVariable("customerId") UUID id, @RequestBody CustomerDto customerDto) {
+    public void updateCustomer(@PathVariable("customerId") UUID id, @RequestBody @Valid CustomerDto customerDto) {
         customerService.updateCustomer(id, customerDto);
     }
     
@@ -60,7 +64,5 @@ public class CustomerController {
     @DeleteMapping("/{customerId}")
     public void destroyCustomer(@PathVariable("customerId") UUID id) {
         customerService.deleteCustomerById(id);
-    }
-    
-    
+    }    
 }

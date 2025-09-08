@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import harley755.springboot.mcsc_brewery.services.BeerService;
 import harley755.springboot.mcsc_brewery.web.model.BeerDto;
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,7 +40,7 @@ public class BeerController {
     }
     
    @PostMapping
-    public ResponseEntity<Void> createBeer(@RequestBody BeerDto beerDto) {
+    public ResponseEntity<Void> createBeer (@Valid @RequestBody BeerDto beerDto) {
         BeerDto saved = beerService.createBeer(beerDto);
 
         return ResponseEntity
@@ -47,7 +49,7 @@ public class BeerController {
     }
 
     @PutMapping("/{beerId}")
-    public ResponseEntity<Void> updateBeer(@PathVariable("beerId") UUID id, @RequestBody BeerDto beerDto) {
+    public ResponseEntity<Void> updateBeer(@PathVariable("beerId") UUID id, @Valid @RequestBody BeerDto beerDto) {
         beerService.updateBeer(id, beerDto);
 
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
