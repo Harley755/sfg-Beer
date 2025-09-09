@@ -1,5 +1,6 @@
 package harley755.springboot.mcsc_brewery.domain;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import harley755.springboot.mcsc_brewery.web.model.v2.BeerStyleEnum;
@@ -17,4 +18,8 @@ public class Beer {
     private String beername;
     private BeerStyleEnum beerStyle;
     private Long upc;
+
+    private Timestamp created_at;
+    private Timestamp updated_at;
+    
 }

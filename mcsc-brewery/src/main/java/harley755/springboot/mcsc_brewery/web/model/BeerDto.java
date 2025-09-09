@@ -1,5 +1,6 @@
 package harley755.springboot.mcsc_brewery.web.model;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Null;
@@ -26,4 +27,7 @@ public class BeerDto {
 
     @Positive
     private Long upc; // Universal Product Code
+
+    private OffsetDateTime created_at;
+    private OffsetDateTime updated_at;
 }
